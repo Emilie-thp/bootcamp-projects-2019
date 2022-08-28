@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card">
+    <h4 class="card-header">
+      OBJET : <%= email.object %>
+    </h4>
+
+    <%if email.read%> 
+      <div class="card-body read">
+    <% else%>
+      <div class="card-body">
+    <%end%>
+      
+      <blockquote class="blockquote mb-0">
+        <p><%= email.body %></p>
+      
+	        <%= link_to email_path(email.id), method: :put, :remote => true do %> 
+
+            <%if email.read%> 
+              <button type="button" class="btn btn-primary btn-sm">Marquer comme non lu</button>
+         
+            <% else%>
+              <button type="button" class="btn btn-primary btn-sm">Marquer comme lu</button>
+            <%end%>
+          <%end%>
+
+	        <%= link_to email_path(email.id), method: :delete, data: { confirm: "Voulez-vous supprimer ce mail ?", :remote => true } do %> 
+	        	<button type="button" class="	btn btn-secondary btn-sm">Supprimer</button>
+          <%end%>
+
+      </blockquote>
+    </div>
+  </div>
+</div>
